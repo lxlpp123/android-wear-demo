@@ -19,6 +19,6 @@
         android:fontFamily="sans-serif-condensed-light"
         android:lineSpacingExtra="-4sp"
         android:textColor="@color/demo_item_text_color"
-        android:textSize="16sp"/>
+        android:textSize="14sp"/>
 
 </merge>
