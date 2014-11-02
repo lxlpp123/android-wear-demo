@@ -4,5 +4,6 @@
     <string name="app_name">Android Wear Demo</string>
     <string name="hello_round">Hello Round World!</string>
     <string name="hello_square">Hello Square World!</string>
+    <string name="title_activity_watch_view_stub">Watch View Stub Demo</string>
 
 </resources>
