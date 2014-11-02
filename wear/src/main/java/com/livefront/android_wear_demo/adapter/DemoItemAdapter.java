@@ -7,8 +7,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.livefront.android_wear_demo.R;
+import com.livefront.android_wear_demo.activity.MainActivity;
+
+import java.util.List;
 
 public class DemoItemAdapter extends WearableListView.Adapter {
+
+    private List<MainActivity.DemoItem> mData;
 
     // Provide a reference to the type of views you're using
     public static class ItemViewHolder extends WearableListView.ViewHolder {
@@ -19,6 +24,10 @@ public class DemoItemAdapter extends WearableListView.Adapter {
         }
     }
 
+    public DemoItemAdapter(List<MainActivity.DemoItem> demoItems) {
+        mData = demoItems;
+    }
+
     @Override
     public WearableListView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         return new ItemViewHolder(LayoutInflater.from(viewGroup.getContext())
@@ -27,11 +36,14 @@ public class DemoItemAdapter extends WearableListView.Adapter {
 
     @Override
     public void onBindViewHolder(WearableListView.ViewHolder viewHolder, int position) {
+        MainActivity.DemoItem item = mData.get(position);
+
         ItemViewHolder itemViewHolder = (ItemViewHolder) viewHolder;
+        itemViewHolder.text.setText(item.getName());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mData.size();
     }
 }
