@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="demo_item_circle_color">#03a9f4</color>
+    <color name="demo_item_text_color">@android:color/black</color>
+
+</resources>
