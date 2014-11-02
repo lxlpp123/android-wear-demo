@@ -23,7 +23,43 @@ public class PickerActivity extends Activity {
     }
 
     private void setupData() {
-        // TODO Add data
+        setupDataDrax();
+        setupDataGamora();
+        setupDataGroot();
+        setupDataRocket();
+        setupDataStarLord();
+    }
+
+    private void setupDataDrax() {
+        List<String> quotes = new ArrayList<String>();
+        quotes.add(getString(R.string.picker_drax_quote_1));
+        mQuoteLists.add(new QuoteList(getString(R.string.picker_drax), R.drawable.drax, quotes));
+    }
+
+    private void setupDataGamora() {
+        List<String> quotes = new ArrayList<String>();
+        quotes.add(getString(R.string.picker_gamora_quote_1));
+        mQuoteLists.add(new QuoteList(getString(R.string.picker_gamora), R.drawable.gamora, quotes));
+    }
+
+    private void setupDataGroot() {
+        List<String> quotes = new ArrayList<String>();
+        quotes.add(getString(R.string.picker_groot_quote_1));
+        quotes.add(getString(R.string.picker_groot_quote_1));
+        quotes.add(getString(R.string.picker_groot_quote_1));
+        mQuoteLists.add(new QuoteList(getString(R.string.picker_groot), R.drawable.groot, quotes));
+    }
+
+    private void setupDataRocket() {
+        List<String> quotes = new ArrayList<String>();
+        quotes.add(getString(R.string.picker_rocket_quote_1));
+        mQuoteLists.add(new QuoteList(getString(R.string.picker_rocket), R.drawable.rocket, quotes));
+    }
+
+    private void setupDataStarLord() {
+        List<String> quotes = new ArrayList<String>();
+        quotes.add(getString(R.string.picker_star_lord_quote_1));
+        mQuoteLists.add(new QuoteList(getString(R.string.picker_star_lord), R.drawable.star_lord, quotes));
     }
 
     private void setupGridViewPager() {
@@ -33,25 +69,30 @@ public class PickerActivity extends Activity {
 
     public static class QuoteList {
         private int mImageResource;
-        private List<Quote> mQuotes;
+        private List<String> mQuotes;
         private String mName;
 
-        public QuoteList(String name, int imageResource, List<Quote> quotes) {
+        public QuoteList(String name, int imageResource, List<String> quotes) {
             mName = name;
             mImageResource = imageResource;
             mQuotes = quotes;
         }
 
-        public String getName() {
-            return mName;
+        public String getTitle(int page) {
+            // Only the first page has a title
+            if (page == 0) {
+                return mName;
+            } else {
+                return null;
+            }
         }
 
         public String getText(int page) {
-            // First page is blank, other pages show an actual quote
+            // First has no text
             if (page == 0) {
                 return null;
             } else {
-                return mQuotes.get(page - 1).getText();
+                return mQuotes.get(page - 1);
             }
         }
 
@@ -63,17 +104,4 @@ public class PickerActivity extends Activity {
             return mImageResource;
         }
     }
-
-    public static class Quote {
-        private String mText;
-
-        public Quote(String text) {
-            mText = text;
-        }
-
-        public String getText() {
-            return mText;
-        }
-    }
-
 }

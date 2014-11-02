@@ -18,4 +18,19 @@
     <string name="demo_item_dismiss_overlay_view">DismissOverlayView Demo</string>
     <string name="demo_item_watch_view_stub">WatchViewStub Demo</string>
 
+    <!-- 2D picker names -->
+    <string name="picker_drax">Drax</string>
+    <string name="picker_gamora">Gamora</string>
+    <string name="picker_groot">Groot</string>
+    <string name="picker_rocket">Rocket</string>
+    <string name="picker_star_lord">Star Lord</string>
+
+    <!-- 2D picker quotes -->
+    <string name="picker_drax_quote_1">NOTHING goes over my head!... My reflexes are too fast, I would catch it.</string>
+    <string name="picker_gamora_quote_1">Whatever nightmares the future holds are but dreams compared to what\'s behind me.</string>
+    <string name="picker_groot_quote_1">I am Groot.</string>
+    <string name="picker_rocket_quote_1">Ain\'t no thing like me, except me!</string>
+    <string name="picker_star_lord_quote_1">I come from Earth, a planet of outlaws. My name is Peter Quill. There\'s one other name you may know me by. Star-Lord.</string>
+
+
 </resources>
