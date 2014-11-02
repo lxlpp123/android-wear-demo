@@ -1,9 +1,11 @@
-package com.livefront.android_wear_demo;
+package com.livefront.android_wear_demo.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.wearable.view.WatchViewStub;
 import android.widget.TextView;
+
+import com.livefront.android_wear_demo.R;
 
 public class WatchViewStubActivity extends Activity {
 
