@@ -2,4 +2,12 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Delayed Confirmation Demo -->
+    <dimen name="delayed_confirmation_border_width">10dp</dimen>
+    <dimen name="delayed_confirmation_radius">50dp</dimen>
+    <dimen name="delayed_confirmation_size">100dp</dimen>
+    <dimen name="delayed_confirmation_size_minus_border">80dp</dimen>
+    <dimen name="trigger_button_size">100dp</dimen>
+
 </resources>

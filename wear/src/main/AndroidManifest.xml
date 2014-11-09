@@ -54,6 +54,9 @@
             android:name=".activity.DelayedConfirmationViewActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="android.support.wearable.activity.ConfirmationActivity">
+        </activity>
     </application>
 
 </manifest>
