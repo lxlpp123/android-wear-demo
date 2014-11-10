@@ -5,13 +5,18 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.wearable.Asset;
+import com.google.android.gms.wearable.DataApi;
 import com.google.android.gms.wearable.PutDataMapRequest;
 import com.google.android.gms.wearable.PutDataRequest;
 import com.google.android.gms.wearable.Wearable;
@@ -39,7 +44,22 @@ public class AssetTransferFragment extends Fragment implements View.OnClickListe
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mGoogleApiClient = new GoogleApiClient.Builder(getActivity()).addApi(Wearable.API).build();
+        mGoogleApiClient = new GoogleApiClient.Builder(getActivity()).addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
+            @Override
+            public void onConnected(Bundle bundle) {
+                Log.d("blorg", "connected");
+            }
+
+            @Override
+            public void onConnectionSuspended(int i) {
+                Log.d("blorg", "connection supsended");
+            }
+        }).addOnConnectionFailedListener(new GoogleApiClient.OnConnectionFailedListener() {
+            @Override
+            public void onConnectionFailed(ConnectionResult connectionResult) {
+                Log.d("blorg", "connection failed");
+            }
+        }).addApi(Wearable.API).build();
     }
 
     @Override
@@ -64,8 +84,15 @@ public class AssetTransferFragment extends Fragment implements View.OnClickListe
             Asset asset = createAssetFromBitmap(bitmap);
             PutDataMapRequest dataMapRequest = PutDataMapRequest.create("/image");
             dataMapRequest.getDataMap().putAsset("image", asset);
+            dataMapRequest.getDataMap().putLong("timestamp", System.currentTimeMillis());
             PutDataRequest dataRequest = dataMapRequest.asPutDataRequest();
-            Wearable.DataApi.putDataItem(mGoogleApiClient, dataRequest);
+            PendingResult<DataApi.DataItemResult> resultPendingResult = Wearable.DataApi.putDataItem(mGoogleApiClient, dataRequest);
+            resultPendingResult.setResultCallback(new ResultCallback<DataApi.DataItemResult>() {
+                @Override
+                public void onResult(DataApi.DataItemResult dataItemResult) {
+                    Log.d("blorg", dataItemResult.toString());
+                }
+            });
         }
     }
 

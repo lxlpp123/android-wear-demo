@@ -20,7 +20,7 @@ public class MainActivity extends Activity implements WearableListView.ClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_wear_main);
         setupData();
         setupListView();
     }
