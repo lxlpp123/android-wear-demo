@@ -4,5 +4,9 @@
     <string name="app_name">Android Wear Demo</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="open_navigation_drawer">Open navigation drawer.</string>
+    <string name="close_navigation_drawer">Close navigation drawer.</string>
+    <string name="assets">Assets</string>
+    <string name="wear_it">Wear It!</string>
 
 </resources>

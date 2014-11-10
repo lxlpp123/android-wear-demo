@@ -31,6 +31,7 @@
     <string name="picker_groot_quote_1">I am Groot.</string>
     <string name="picker_rocket_quote_1">Ain\'t no thing like me, except me!</string>
     <string name="picker_star_lord_quote_1">I come from Earth, a planet of outlaws. My name is Peter Quill. There\'s one other name you may know me by. Star-Lord.</string>
+    <string name="show_image">Show Image Activity</string>
 
 
 </resources>
