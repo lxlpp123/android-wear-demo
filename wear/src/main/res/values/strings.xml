@@ -33,5 +33,9 @@
     <string name="picker_star_lord_quote_1">I come from Earth, a planet of outlaws. My name is Peter Quill. There\'s one other name you may know me by. Star-Lord.</string>
     <string name="show_image">Show Image Activity</string>
 
+    <!-- Confirmation message -->
+    <string name="trigger_button_text">Start Countdown</string>
+    <string name="message_cancelled">Cancelled!</string>
+    <string name="message_confirmed">Confirmed!</string>
 
 </resources>
