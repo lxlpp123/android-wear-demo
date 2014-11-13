@@ -38,4 +38,7 @@
     <string name="message_cancelled">Cancelled!</string>
     <string name="message_confirmed">Confirmed!</string>
 
+    <!-- Dismiss overlay message -->
+    <string name="dismiss_intro_text">Long press to dismiss this activity.</string>
+
 </resources>

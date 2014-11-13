@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="@android:style/Theme.DeviceDefault">
+        <!-- This is the default, but can be set to false to show the necessity of using the
+             long-press-to-dismiss pattern -->
+        <item name="android:windowSwipeToDismiss">true</item>
+    </style>
+
+</resources>
