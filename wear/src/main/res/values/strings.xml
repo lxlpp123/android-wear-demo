@@ -41,4 +41,8 @@
     <!-- Dismiss overlay message -->
     <string name="dismiss_intro_text">Long press to dismiss this activity.</string>
 
+    <!-- WatchViewStub demo -->
+    <string name="square_stub_text">Square Layout</string>
+    <string name="round_stub_text">Round Layout</string>
+
 </resources>

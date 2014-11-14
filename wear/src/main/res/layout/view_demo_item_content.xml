@@ -5,20 +5,19 @@
 
     <ImageView
         android:id="@+id/circle"
-        android:layout_height="20dp"
+        android:layout_height="25dp"
+        android:layout_width="25dp"
         android:layout_margin="16dp"
-        android:layout_width="20dp"
+        android:layout_gravity="center"
         android:src="@drawable/demo_item_circle"/>
 
     <TextView
         android:id="@+id/name"
-        android:gravity="center_vertical|left"
         android:layout_width="wrap_content"
-        android:layout_marginRight="16dp"
         android:layout_height="match_parent"
-        android:fontFamily="sans-serif-condensed-light"
-        android:lineSpacingExtra="-4sp"
+        android:layout_gravity="center"
+        android:gravity="center|left"
         android:textColor="@color/demo_item_text_color"
-        android:textSize="14sp"/>
+        android:textSize="12sp"/>
 
 </merge>

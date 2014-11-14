@@ -19,8 +19,11 @@ public class WatchViewStubActivity extends Activity {
         stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
             @Override
             public void onLayoutInflated(WatchViewStub stub) {
+                // If you want to update the TextView you'll have to do it here, otherwise you'll
+                // get an NPE because the WatchViewStub doesn't immediately inflate its contents.
                 mTextView = (TextView) stub.findViewById(R.id.text);
             }
         });
+
     }
 }
