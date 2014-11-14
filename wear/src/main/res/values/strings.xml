@@ -45,4 +45,13 @@
     <string name="square_stub_text">Square Layout</string>
     <string name="round_stub_text">Round Layout</string>
 
+    <!-- CardFrame demo -->
+    <string name="card_frame_text_1">Sample text 1</string>
+    <string name="card_frame_text_2">Sample text 2</string>
+    <string name="card_frame_text_3">Sample text 3</string>
+
+    <!-- CardFragment demo -->
+    <string name="card_fragment_title">Card title</string>
+    <string name="card_fragment_text">Card text</string>
+
 </resources>
