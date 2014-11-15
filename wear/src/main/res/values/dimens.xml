@@ -3,7 +3,10 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <!-- Delayed Confirmation Demo -->
+    <!-- BoxInset demo-->
+    <dimen name="circle_big_size">50dp</dimen>
+
+    <!-- DelayedConfirmationView Demo -->
     <dimen name="delayed_confirmation_border_width">10dp</dimen>
     <dimen name="delayed_confirmation_radius">50dp</dimen>
     <dimen name="delayed_confirmation_size">100dp</dimen>
