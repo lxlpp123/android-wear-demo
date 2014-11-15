@@ -2,13 +2,18 @@
 <android.support.wearable.view.BoxInsetLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@android:color/white"
+    android:background="@color/demo_item_circle_color_blue"
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
     <TextView
         android:id="@+id/text"
+        android:background="@android:color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:text="Box Inset"
+        app:layout_box="all"/>
 
 </android.support.wearable.view.BoxInsetLayout>
