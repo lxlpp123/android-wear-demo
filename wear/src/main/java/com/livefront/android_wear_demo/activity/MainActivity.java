@@ -43,10 +43,10 @@ public class MainActivity extends Activity implements WearableListView.ClickList
                 new Intent(this, BoxInsetActivity.class)));
         mData.add(new DemoItem(getString(R.string.demo_item_watch_view_stub),
                 new Intent(this, WatchViewStubActivity.class)));
-        mData.add(new DemoItem(getString(R.string.demo_item_card_frame),
-                new Intent(this, CardFrameActivity.class)));
         mData.add(new DemoItem(getString(R.string.demo_item_card_fragment),
                 new Intent(this, CardFragmentActivity.class)));
+        mData.add(new DemoItem(getString(R.string.demo_item_card_frame),
+                new Intent(this, CardFrameActivity.class)));
         mData.add(new DemoItem(getString(R.string.demo_item_2d_picker),
                 new Intent(this, PickerActivity.class)));
         mData.add(new DemoItem(getString(R.string.demo_item_delayed_confirmation_view),

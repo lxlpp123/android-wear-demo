@@ -36,8 +36,10 @@ public class DemoItemAdapter extends WearableListView.Adapter {
 
     @Override
     public void onBindViewHolder(WearableListView.ViewHolder viewHolder, int position) {
+        // Get item
         MainActivity.DemoItem item = mData.get(position);
 
+        // Update TextView
         ItemViewHolder itemViewHolder = (ItemViewHolder) viewHolder;
         itemViewHolder.text.setText(item.getName());
     }
