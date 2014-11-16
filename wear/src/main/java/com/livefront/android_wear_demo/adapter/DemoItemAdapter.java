@@ -30,7 +30,7 @@ public class DemoItemAdapter extends WearableListView.Adapter {
     @Override
     public WearableListView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         return new ItemViewHolder(LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.view_demo_item, viewGroup, false));
+                .inflate(R.layout.view_demo_item_layout, viewGroup, false));
     }
 
     @Override

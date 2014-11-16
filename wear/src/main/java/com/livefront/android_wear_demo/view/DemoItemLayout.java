@@ -39,7 +39,7 @@ public class DemoItemLayout extends LinearLayout implements WearableListView.Ite
     }
 
     private void init() {
-        LayoutInflater.from(getContext()).inflate(R.layout.view_demo_item_content, this, true);
+        LayoutInflater.from(getContext()).inflate(R.layout.view_demo_item_layout_content, this, true);
         mCircle = (ImageView) findViewById(R.id.circle);
         mText = (TextView) findViewById(R.id.name);
         mColorBlue = getResources().getColor(R.color.demo_item_circle_color_blue);
