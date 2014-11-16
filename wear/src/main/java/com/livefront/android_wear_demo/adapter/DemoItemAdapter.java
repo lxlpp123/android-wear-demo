@@ -15,9 +15,8 @@ public class DemoItemAdapter extends WearableListView.Adapter {
 
     private List<MainActivity.DemoItem> mData;
 
-    // Provide a reference to the type of views you're using
-    public static class ItemViewHolder extends WearableListView.ViewHolder {
-        private TextView text;
+    private static class ItemViewHolder extends WearableListView.ViewHolder {
+        TextView text;
         public ItemViewHolder(View itemView) {
             super(itemView);
             text = (TextView) itemView.findViewById(R.id.name);

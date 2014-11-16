@@ -6,16 +6,10 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
-    <FrameLayout
-        android:id="@+id/frame_layout"
+    <android.support.wearable.view.WearableListView
+        android:id="@+id/wearable_list"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        app:layout_box="left|right">
+        app:layout_box="left|right"/>
 
-        <android.support.wearable.view.WearableListView
-            android:id="@+id/wearable_list"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent" />
-
-    </FrameLayout>
 </android.support.wearable.view.BoxInsetLayout>
