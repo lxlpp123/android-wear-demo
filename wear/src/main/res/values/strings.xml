@@ -34,8 +34,8 @@
     <string name="show_image">Show Image Activity</string>
 
     <!-- Confirmation message -->
-    <string name="trigger_button_text">Start Countdown</string>
-    <string name="message_cancelled">Cancelled!</string>
+    <string name="trigger_button_text">Launch the Nukes?</string>
+    <string name="message_canceled">Canceled!</string>
     <string name="message_confirmed">Confirmed!</string>
 
     <!-- Dismiss overlay message -->

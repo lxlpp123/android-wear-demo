@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="demo_item_circle_color_green">#72d572</color>
-    <color name="demo_item_circle_color_blue">#03a9f4</color>
+    <color name="demo_blue">#03a9f4</color>
+    <color name="demo_green">#72d572</color>
+    <color name="demo_red">#ff0000</color>
     <color name="demo_item_text_color">@android:color/black</color>
 
 </resources>

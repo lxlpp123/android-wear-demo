@@ -30,8 +30,8 @@
         android:visibility="gone"
         android:src="@drawable/ic_full_cancel"
         app:layout_box="all"
-        app:circle_color="@color/demo_item_circle_color_blue"
-        app:circle_border_color="@color/demo_item_circle_color_green"
+        app:circle_color="@color/demo_blue"
+        app:circle_border_color="@color/demo_green"
         app:circle_border_width="@dimen/delayed_confirmation_border_width"
         app:circle_radius="@dimen/delayed_confirmation_radius" />
 

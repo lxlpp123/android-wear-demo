@@ -9,6 +9,6 @@
         android:width="@dimen/trigger_button_size"
         />
 
-    <solid android:color="@color/demo_item_circle_color_green" />
+    <solid android:color="@color/demo_red" />
 
 </shape>

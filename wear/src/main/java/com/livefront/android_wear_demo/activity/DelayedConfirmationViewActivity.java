@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.wearable.activity.ConfirmationActivity;
 import android.support.wearable.view.DelayedConfirmationView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.livefront.android_wear_demo.R;
 
@@ -75,13 +76,9 @@ public class DelayedConfirmationViewActivity extends Activity implements
         // Indicate that the timer should do nothing when it finishes
         mCanceled = true;
 
-        // Show the error animation
-        Intent intent = new Intent(this, ConfirmationActivity.class);
-        intent.putExtra(ConfirmationActivity.EXTRA_ANIMATION_TYPE,
-                ConfirmationActivity.FAILURE_ANIMATION);
-        intent.putExtra(ConfirmationActivity.EXTRA_MESSAGE,
-                getString(R.string.message_cancelled));
-        startActivityForResult(intent, CONFIRMATION_REQUEST_CODE);
+        // Show a cancellation toast
+        Toast.makeText(this, getString(R.string.message_canceled), Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     private void animateInDelayedViewAndStartTimer() {
