@@ -39,8 +39,8 @@ public class QuoteGridPagerAdapter extends FragmentGridPagerAdapter {
     }
 
     @Override
-    public int getColumnCount(int rowNum) {
-        return mData.get(rowNum).getPageCount();
+    public int getColumnCount(int row) {
+        return mData.get(row).getPageCount();
     }
 
     @Override
