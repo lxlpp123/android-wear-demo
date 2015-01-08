@@ -64,7 +64,7 @@ public class PickerActivity extends Activity {
 
     private void setupGridViewPager() {
         final GridViewPager pager = (GridViewPager) findViewById(R.id.pager);
-        pager.setAdapter(new QuoteGridPagerAdapter(mQuoteLists, getFragmentManager()));
+        pager.setAdapter(new QuoteGridPagerAdapter(this, mQuoteLists, getFragmentManager()));
     }
 
     public static class QuoteList {

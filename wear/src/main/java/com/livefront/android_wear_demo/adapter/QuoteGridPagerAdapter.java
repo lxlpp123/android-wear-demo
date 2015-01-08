@@ -2,9 +2,10 @@ package com.livefront.android_wear_demo.adapter;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.wearable.view.CardFragment;
 import android.support.wearable.view.FragmentGridPagerAdapter;
-import android.support.wearable.view.ImageReference;
 import android.view.Gravity;
 
 import com.livefront.android_wear_demo.activity.PickerActivity;
@@ -15,10 +16,12 @@ public class QuoteGridPagerAdapter extends FragmentGridPagerAdapter {
 
     private static final float MAXIMUM_CARD_EXPANSION_FACTOR = 3.0f;
 
-    List<PickerActivity.QuoteList> mData;
+    private Context mContext;
+    private List<PickerActivity.QuoteList> mData;
 
-    public QuoteGridPagerAdapter(List<PickerActivity.QuoteList> quoteLists, FragmentManager fm) {
+    public QuoteGridPagerAdapter(Context context, List<PickerActivity.QuoteList> quoteLists, FragmentManager fm) {
         super(fm);
+        mContext = context;
         mData = quoteLists;
     }
 
@@ -44,7 +47,7 @@ public class QuoteGridPagerAdapter extends FragmentGridPagerAdapter {
     }
 
     @Override
-    public ImageReference getBackground(int row, int column) {
-        return ImageReference.forDrawable(mData.get(row).getImageResource());
+    public Drawable getBackgroundForPage(int row, int column) {
+        return mContext.getResources().getDrawable(mData.get(row).getImageResource());
     }
 }
