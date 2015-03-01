@@ -47,7 +47,7 @@ public class QuoteGridPagerAdapter extends FragmentGridPagerAdapter {
     }
 
     @Override
-    public Drawable getBackgroundForPage(int row, int column) {
+    public Drawable getBackgroundForRow(int row) {
         return mContext.getResources().getDrawable(mData.get(row).getImageResource());
     }
 }
