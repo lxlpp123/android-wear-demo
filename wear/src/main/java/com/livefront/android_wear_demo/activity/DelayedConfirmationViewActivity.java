@@ -39,6 +39,11 @@ public class DelayedConfirmationViewActivity extends Activity implements
         mDelayedView = (DelayedConfirmationView)
                 findViewById(R.id.delayed_confirm);
 
+        // Programmatically hide due to visibility bug when setting value in XML. See the following
+        // issue for more details:
+        // https://code.google.com/p/android/issues/detail?id=90142
+        mDelayedView.setVisibility(View.GONE);
+
         // Set the timer to 2 seconds
         mDelayedView.setTotalTimeMs(2000);
 
