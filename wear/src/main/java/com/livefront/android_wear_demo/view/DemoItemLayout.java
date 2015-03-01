@@ -58,8 +58,6 @@ public class DemoItemLayout extends LinearLayout implements WearableListView.OnC
     @Override
     public void onCenterPosition(boolean animate) {
         ((GradientDrawable) mCircle.getDrawable()).setColor(mColorBlue);
-        mCircle.animate().cancel();
-        mText.animate().cancel();
         if (animate) {
             mCircle.animate()
                     .scaleX(SCALE_MAX)
@@ -80,8 +78,6 @@ public class DemoItemLayout extends LinearLayout implements WearableListView.OnC
     @Override
     public void onNonCenterPosition(boolean animate) {
         ((GradientDrawable) mCircle.getDrawable()).setColor(mColorGreen);
-        mCircle.animate().cancel();
-        mText.animate().cancel();
         if (animate) {
             mCircle.animate()
                     .scaleX(SCALE_MIN)
