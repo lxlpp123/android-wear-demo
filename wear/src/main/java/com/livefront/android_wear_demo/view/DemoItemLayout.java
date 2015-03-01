@@ -17,11 +17,10 @@ public class DemoItemLayout extends LinearLayout implements WearableListView.OnC
     private static final float ALPHA_MIN = 0.7f;
     private static final float SCALE_MAX = 1.0f;
     private static final float SCALE_MIN = 0.7f;
-
+    private static final int ANIMATION_DURATION = 100;
 
     private int mColorBlue;
     private int mColorGreen;
-    private float mScale;
 
     private ImageView mCircle;
     private TextView mText;
@@ -47,25 +46,56 @@ public class DemoItemLayout extends LinearLayout implements WearableListView.OnC
         mText = (TextView) findViewById(R.id.name);
         mColorBlue = getResources().getColor(R.color.demo_blue);
         mColorGreen = getResources().getColor(R.color.demo_green);
+
+        // Initialize view with non-center position values
+        mCircle.setScaleX(SCALE_MIN);
+        mCircle.setScaleY(SCALE_MIN);
+        mText.setAlpha(ALPHA_MIN);
     }
 
     // WearableListView.Item methods //
 
     @Override
     public void onCenterPosition(boolean animate) {
-        // TODO Add animations
-        mCircle.setScaleX(SCALE_MAX);
-        mCircle.setScaleY(SCALE_MAX);
-        mText.setAlpha(ALPHA_MAX);
         ((GradientDrawable) mCircle.getDrawable()).setColor(mColorBlue);
+        mCircle.animate().cancel();
+        mText.animate().cancel();
+        if (animate) {
+            mCircle.animate()
+                    .scaleX(SCALE_MAX)
+                    .scaleY(SCALE_MAX)
+                    .setDuration(ANIMATION_DURATION)
+                    .start();
+            mText.animate()
+                    .alpha(ALPHA_MAX)
+                    .setDuration(ANIMATION_DURATION)
+                    .start();
+        } else {
+            mCircle.setScaleX(SCALE_MAX);
+            mCircle.setScaleY(SCALE_MAX);
+            mText.setAlpha(ALPHA_MAX);
+        }
     }
 
     @Override
     public void onNonCenterPosition(boolean animate) {
-        // TODO Add animations
-        mCircle.setScaleX(SCALE_MIN);
-        mCircle.setScaleY(SCALE_MIN);
-        mText.setAlpha(ALPHA_MIN);
         ((GradientDrawable) mCircle.getDrawable()).setColor(mColorGreen);
+        mCircle.animate().cancel();
+        mText.animate().cancel();
+        if (animate) {
+            mCircle.animate()
+                    .scaleX(SCALE_MIN)
+                    .scaleY(SCALE_MIN)
+                    .setDuration(ANIMATION_DURATION)
+                    .start();
+            mText.animate()
+                    .alpha(ALPHA_MIN)
+                    .setDuration(ANIMATION_DURATION)
+                    .start();
+        } else {
+            mCircle.setScaleX(SCALE_MIN);
+            mCircle.setScaleY(SCALE_MIN);
+            mText.setAlpha(ALPHA_MIN);
+        }
     }
 }
