@@ -12,7 +12,6 @@ This app provides a simple showcase for the basic tools available when developin
 - **2D Picker Demo** : Demonstrates the "2D Picker" pattern by making use of a `GridViewPager`
 - **DelayedConfirmationView Demo** : Simple example of including a `DelayedConfirmationView` in a layout
 - **DismissOverlayView Demo** : Demonstrates the usage of the `DismissOverlayView` to implement the long-press-to-dismiss pattern
-- **Show Image Activity** : ...
 
 In addition, the primary Activity of the Wear app should be understood as a demonstration of the `WearableListView`.
 

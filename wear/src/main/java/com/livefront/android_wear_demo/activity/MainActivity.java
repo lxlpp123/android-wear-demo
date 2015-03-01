@@ -53,8 +53,6 @@ public class MainActivity extends Activity implements WearableListView.ClickList
                 new Intent(this, DelayedConfirmationViewActivity.class)));
         mData.add(new DemoItem(getString(R.string.demo_item_dismiss_overlay_view),
                 new Intent(this, DismissOverlayViewActivity.class)));
-        mData.add(new DemoItem(getString(R.string.show_image),
-                new Intent(this, ShowImageActivity.class)));
     }
 
     public void setupListView() {
