@@ -13,8 +13,11 @@ import com.livefront.android_wear_demo.R;
 
 public class DemoItemLayout extends LinearLayout implements WearableListView.OnCenterProximityListener {
 
-    private static final float PROXIMITY_MIN_VALUE = 1.0f;
-    private static final float PROXIMITY_MAX_VALUE = 1.5f;
+    private static final float ALPHA_MAX = 1.0f;
+    private static final float ALPHA_MIN = 0.7f;
+    private static final float SCALE_MAX = 1.0f;
+    private static final float SCALE_MIN = 0.7f;
+
 
     private int mColorBlue;
     private int mColorGreen;
@@ -51,18 +54,18 @@ public class DemoItemLayout extends LinearLayout implements WearableListView.OnC
     @Override
     public void onCenterPosition(boolean animate) {
         // TODO Add animations
-        mCircle.setScaleX(PROXIMITY_MAX_VALUE);
-        mCircle.setScaleY(PROXIMITY_MAX_VALUE);
-        mText.setAlpha(1.0f/PROXIMITY_MIN_VALUE);
+        mCircle.setScaleX(SCALE_MAX);
+        mCircle.setScaleY(SCALE_MAX);
+        mText.setAlpha(ALPHA_MAX);
         ((GradientDrawable) mCircle.getDrawable()).setColor(mColorBlue);
     }
 
     @Override
     public void onNonCenterPosition(boolean animate) {
         // TODO Add animations
-        mCircle.setScaleX(PROXIMITY_MIN_VALUE);
-        mCircle.setScaleY(PROXIMITY_MIN_VALUE);
-        mText.setAlpha(1.0f/PROXIMITY_MAX_VALUE);
+        mCircle.setScaleX(SCALE_MIN);
+        mCircle.setScaleY(SCALE_MIN);
+        mText.setAlpha(ALPHA_MIN);
         ((GradientDrawable) mCircle.getDrawable()).setColor(mColorGreen);
     }
 }

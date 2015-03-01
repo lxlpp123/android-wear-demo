@@ -5,8 +5,8 @@
 
     <ImageView
         android:id="@+id/circle"
-        android:layout_height="25dp"
-        android:layout_width="25dp"
+        android:layout_height="35dp"
+        android:layout_width="35dp"
         android:layout_margin="16dp"
         android:layout_gravity="center"
         android:src="@drawable/demo_item_circle"/>
