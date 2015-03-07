@@ -21,4 +21,4 @@ To grab the repo:
 
     $ git clone git@github.com:livefront/android-wear-demo.git
 
-All but the last demo items can be tested by loading the `wear` module directly onto a device or emulator in the standard way using Android Studio.
+All the demos can be tested by loading the `wear` module directly onto a device or emulator in the standard way using Android Studio.
