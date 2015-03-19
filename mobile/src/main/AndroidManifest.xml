@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.livefront.android_wear_demo" >
 
+    <uses-permission
+        android:name="com.google.android.permission.PROVIDE_BACKGROUND" />
+    <uses-permission
+        android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"

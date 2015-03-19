@@ -15,4 +15,11 @@
 
     <!-- WatchViewStub Demo -->
     <dimen name="stub_margin">30dp</dimen>
+
+    <!-- Watch Face demo -->
+    <dimen name="x_offset">15dp</dimen>
+    <dimen name="y_offset">90dp</dimen>
+    <dimen name="text_size">40sp</dimen>
+    <dimen name="temp_text_size">20sp</dimen>
+    <dimen name="horizontal_margin">5dp</dimen>
 </resources>

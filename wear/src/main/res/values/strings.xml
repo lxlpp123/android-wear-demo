@@ -54,4 +54,11 @@
     <string name="card_fragment_title">Card title</string>
     <string name="card_fragment_text">Card text</string>
 
+    <!-- Watch Face demo -->
+    <string name="temperature_name">Digital Temperature Face</string>
+    <string name="hi">HI: </string>
+    <string name="lo">LO: </string>
+    <string name="unknown">\?</string>
+    <string name="degree">%d°</string>
+
 </resources>
