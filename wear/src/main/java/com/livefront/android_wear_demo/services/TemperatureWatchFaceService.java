@@ -34,12 +34,11 @@ import java.util.TimeZone;
 public class TemperatureWatchFaceService extends CanvasWatchFaceService {
     private static final String TAG = TemperatureWatchFaceService.class.getSimpleName();
 
-
     /**
      * Update rate in milliseconds for interactive mode. Update twice a second to blink the colons.
      */
-    private static final long UPDATE_TIME_RATE_MS = 500;
-    private static final long UPDATE_TEMP_RATE_MS = 60 * 60 * 1000;
+    private static final long UPDATE_TIME_RATE_MS = 1;
+    private static final long UPDATE_TEMP_RATE_MS = 10;
 
     @Override
     public Engine onCreateEngine() {
@@ -139,6 +138,7 @@ public class TemperatureWatchFaceService extends CanvasWatchFaceService {
                     .setBackgroundVisibility(WatchFaceStyle.BACKGROUND_VISIBILITY_INTERRUPTIVE)
                     .setShowSystemUiTime(false)
                     .build());
+
             Resources resources = TemperatureWatchFaceService.this.getResources();
 
             mAmbientBackgroundColor = resources.getColor(R.color.ambient_background);
@@ -284,7 +284,7 @@ public class TemperatureWatchFaceService extends CanvasWatchFaceService {
             // Draw the background.
             canvas.drawRect(0, 0, bounds.width(), bounds.height(), mBackgroundPaint);
 
-            String time = "";
+            String time;
             if (isInAmbientMode()) {
                 time = mTime.format("%I:%M");
             } else if (shouldDrawColon) {
