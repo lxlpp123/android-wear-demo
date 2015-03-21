@@ -15,6 +15,8 @@ This app provides a simple showcase for the basic tools available when developin
 
 In addition, the primary Activity of the Wear app should be understood as a demonstration of the `WearableListView`.
 
+A watch face service called Digital Temperature Face is also included with the wearable app. It will display the temperature-sensitive time (changes color with the current temp!) along with the high and low temperature for the day.
+
 ## Setup
 
 To grab the repo:
