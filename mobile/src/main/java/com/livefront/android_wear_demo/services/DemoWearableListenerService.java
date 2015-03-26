@@ -71,7 +71,7 @@ public class DemoWearableListenerService extends WearableListenerService {
     }
 
     private void sendMessage(String nodeId, int[] temps) {
-        if (!mGoogleApiClient.isConnected()) {
+        if (!mGoogleApiClient.isConnected() || temps == null) {
             return;
         }
 

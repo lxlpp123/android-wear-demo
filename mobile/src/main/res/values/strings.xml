@@ -9,4 +9,12 @@
     <string name="assets">Assets</string>
     <string name="wear_it">Wear It!</string>
 
+    <!-- Watch face demo -->
+    <string name="temperature_config_text">Temperature Configuration</string>
+    <string name="city">Location (City, ST)</string>
+    <string name="temperature_units">Temperature Units</string>
+    <string name="fahrenheit">Fahrenheit</string>
+    <string name="celsius">Celsius</string>
+    <string name="default_location">Minneapolis, MN</string>
+
 </resources>

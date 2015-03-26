@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:text="@string/temperature_config_text"
+        android:textSize="24sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/city"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/edit_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/temperature_units"
+        android:textSize="18sp" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <RadioButton
+            android:id="@+id/radio_fahrenheit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fahrenheit" />
+
+        <RadioButton
+            android:id="@+id/radio_celsius"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/celsius" />
+
+    </RadioGroup>
+
+
+</LinearLayout>

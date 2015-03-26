@@ -65,6 +65,8 @@ public class RetrieveCityWeatherTask extends AsyncTask<String, Void, int[]> {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
 
         return null;

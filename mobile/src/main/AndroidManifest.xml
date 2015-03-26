@@ -25,6 +25,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.TemperatureWatchFaceCompanionConfigActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.livefront.android_wear_demo.CONFIG_TEMPERATURE" />
+                <category android:name="com.google.android.wearable.watchface.category.COMPANION_CONFIGURATION" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <service android:name=".services.DemoWearableListenerService">
             <intent-filter>
                 <action android:name="com.google.android.gms.wearable.BIND_LISTENER" />

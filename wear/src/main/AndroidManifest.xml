@@ -72,6 +72,16 @@
             android:name="android.support.wearable.activity.ConfirmationActivity">
         </activity>
 
+        <activity
+            android:name=".activity.TemperatureWatchFaceWearableConfigActivity"
+            android:label="@string/temperature_config_name">
+            <intent-filter>
+                <action android:name="com.livefront.android_wear_demo.CONFIG_TEMPERATURE" />
+                <category android:name="com.google.android.wearable.watchface.category.WEARABLE_CONFIGURATION" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <service android:name=".services.DemoWearableDataListenerService">
             <intent-filter>
                 <action android:name="com.google.android.gms.wearable.BIND_LISTENER" />
@@ -90,6 +100,12 @@
             <meta-data
                 android:name="com.google.android.wearable.watchface.preview"
                 android:resource="@drawable/preview_digital" />
+            <meta-data
+                android:name="com.google.android.wearable.watchface.companionConfigurationAction"
+                android:value="com.livefront.android_wear_demo.CONFIG_TEMPERATURE" />
+            <meta-data
+                android:name="com.google.android.wearable.watchface.wearableConfigurationAction"
+                android:value="com.livefront.android_wear_demo.CONFIG_TEMPERATURE" />
             <intent-filter>
                 <action android:name="android.service.wallpaper.WallpaperService" />
                 <category

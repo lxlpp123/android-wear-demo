@@ -17,12 +17,19 @@ import android.text.format.Time;
 import android.view.SurfaceHolder;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.wearable.DataApi;
+import com.google.android.gms.wearable.DataEvent;
+import com.google.android.gms.wearable.DataEventBuffer;
+import com.google.android.gms.wearable.DataItem;
+import com.google.android.gms.wearable.DataMap;
+import com.google.android.gms.wearable.DataMapItem;
 import com.google.android.gms.wearable.MessageApi;
 import com.google.android.gms.wearable.MessageEvent;
 import com.google.android.gms.wearable.PutDataMapRequest;
 import com.google.android.gms.wearable.PutDataRequest;
 import com.google.android.gms.wearable.Wearable;
 import com.livefront.android_wear_demo.R;
+import com.livefront.android_wear_demo.util.WatchFaceUtil;
 
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
@@ -37,8 +44,8 @@ public class TemperatureWatchFaceService extends CanvasWatchFaceService {
     /**
      * Update rate in milliseconds for interactive mode. Update twice a second to blink the colons.
      */
-    private static final long UPDATE_TIME_RATE_MS = 1;
-    private static final long UPDATE_TEMP_RATE_MS = 10;
+    private static final long UPDATE_TIME_RATE_MS = 500;
+    private static final long UPDATE_TEMP_RATE_MS = 60 * 60 * 1000;
 
     @Override
     public Engine onCreateEngine() {
@@ -47,7 +54,8 @@ public class TemperatureWatchFaceService extends CanvasWatchFaceService {
 
     /* implement service callback methods */
     private class Engine extends CanvasWatchFaceService.Engine implements MessageApi.MessageListener,
-            GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+            GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
+            DataApi.DataListener {
 
         private static final int MSG_UPDATE_TIME = 0;
         private static final int MSG_UPDATE_TEMPS = 1;
@@ -123,6 +131,12 @@ public class TemperatureWatchFaceService extends CanvasWatchFaceService {
         private String mDegreeFormat;
         private String mUnknownString;
 
+        private String mFahrenheitString;
+        private String mCelsiusString;
+
+        private WatchFaceUtil.TemperatureUnits mCurrentUnits;
+        private String mCity;
+
         /**
          * Whether the display supports fewer bits for each color in ambient mode. When true, we
          * disable anti-aliasing in ambient mode.
@@ -176,6 +190,8 @@ public class TemperatureWatchFaceService extends CanvasWatchFaceService {
             mLowString = resources.getString(R.string.lo);
             mDegreeFormat = resources.getString(R.string.degree);
             mUnknownString = resources.getString(R.string.unknown);
+            mFahrenheitString = getString(R.string.fahrenheit);
+            mCelsiusString = getString(R.string.celsius);
 
             mHorizontalMargin = resources.getDimension(R.dimen.horizontal_margin);
 
@@ -307,14 +323,24 @@ public class TemperatureWatchFaceService extends CanvasWatchFaceService {
             offset += mHorizontalMargin + mHiLoPaint.measureText(mLowString);
             String highString;
             if (mHighTemperature != null) {
-                highString = String.format(mDegreeFormat, mHighTemperature);
+                int displayedValue = mHighTemperature;
+                if (mCurrentUnits.equals(WatchFaceUtil.TemperatureUnits.Celsius)) {
+                    displayedValue = (int) ((displayedValue - 32) * 5f / 9f);
+                }
+
+                highString = String.format(mDegreeFormat, displayedValue);
             } else {
                 highString = mUnknownString;
             }
 
             String lowString;
             if (mLowTemperature != null) {
-                lowString = String.format(mDegreeFormat, mLowTemperature);
+                int displayedValue = mLowTemperature;
+                if (mCurrentUnits.equals(WatchFaceUtil.TemperatureUnits.Celsius)) {
+                    displayedValue = (int) ((displayedValue - 32) * 5f / 9f);
+                }
+
+                lowString = String.format(mDegreeFormat, displayedValue);
             } else {
                 lowString = mUnknownString;
             }
@@ -413,15 +439,82 @@ public class TemperatureWatchFaceService extends CanvasWatchFaceService {
 
         private void retrieveUpdatedTemps() {
             PutDataMapRequest putDataMapReq = PutDataMapRequest.create("/weather");
-            putDataMapReq.getDataMap().putString("city", "Minneapolis, MN");
+            putDataMapReq.getDataMap().putString("city", mCity);
             putDataMapReq.getDataMap().putLong("timestamp", Calendar.getInstance().getTimeInMillis());
             PutDataRequest putDataReq = putDataMapReq.asPutDataRequest();
             Wearable.DataApi.putDataItem(mGoogleApiClient, putDataReq);
         }
 
+        private void updateConfigDataItemAndUiOnStartup() {
+            WatchFaceUtil.fetchConfigDataMap(mGoogleApiClient,
+                    new WatchFaceUtil.FetchConfigDataMapCallback() {
+                        @Override
+                        public void onConfigDataMapFetched(DataMap startupConfig) {
+                            setDefaultValuesForMissingConfigKeys(startupConfig);
+                            WatchFaceUtil.putConfigDataItem(mGoogleApiClient, startupConfig);
+
+                            updateUiForConfigDataMap(startupConfig);
+                        }
+                    }
+            );
+        }
+
+        private void setDefaultValuesForMissingConfigKeys(DataMap config) {
+            addStringKeyIfMissing(config, WatchFaceUtil.KEY_TEMPERATURE_UNITS,
+                    getResources().getString(R.string.fahrenheit));
+            addStringKeyIfMissing(config, WatchFaceUtil.KEY_WEATHER_LOCATION,
+                    getResources().getString(R.string.default_city));
+        }
+
+        private void addStringKeyIfMissing(DataMap config, String key, String value) {
+            if (!config.containsKey(key)) {
+                config.putString(key, value);
+            }
+        }
+
+        private void updateUiForConfigDataMap(final DataMap config) {
+            boolean uiUpdated = false;
+            for (String configKey : config.keySet()) {
+                if (!config.containsKey(configKey)) {
+                    continue;
+                }
+
+                String value = config.getString(configKey);
+                if (updateUiForKey(configKey, value)) {
+                    uiUpdated = true;
+                }
+            }
+
+            if (uiUpdated) {
+                invalidate();
+            }
+        }
+
+        private boolean updateUiForKey(String configKey, String value) {
+            switch (configKey) {
+                case WatchFaceUtil.KEY_TEMPERATURE_UNITS:
+                    if (value.equals(mFahrenheitString)) {
+                        mCurrentUnits = WatchFaceUtil.TemperatureUnits.Fahrenheit;
+                    } else if (value.equals(mCelsiusString)) {
+                        mCurrentUnits = WatchFaceUtil.TemperatureUnits.Celsius;
+                    }
+                    break;
+                case WatchFaceUtil.KEY_WEATHER_LOCATION:
+                    mCity = value;
+                    retrieveUpdatedTemps();
+                    break;
+                default:
+                    return false;
+            }
+
+            return true;
+        }
+
         @Override
         public void onConnected(Bundle bundle) {
             Wearable.MessageApi.addListener(mGoogleApiClient, this);
+            Wearable.DataApi.addListener(mGoogleApiClient, this);
+            updateConfigDataItemAndUiOnStartup();
         }
 
         @Override
@@ -443,6 +536,7 @@ public class TemperatureWatchFaceService extends CanvasWatchFaceService {
                 int[] array = new int[intBuf.remaining()];
                 intBuf.get(array);
 
+                // Temperatures received come back as Fahrenheit
                 mCurrentTemperature = array[0];
                 mHighTemperature = array[1];
                 mLowTemperature = array[2];
@@ -454,6 +548,33 @@ public class TemperatureWatchFaceService extends CanvasWatchFaceService {
                 }
 
                 invalidate();
+            } else if (messageEvent.getPath().equals(WatchFaceUtil.PATH_WITH_FEATURE)) {
+                byte[] payload = messageEvent.getData();
+                DataMap configKeysToOverwrite = DataMap.fromByteArray(payload);
+                WatchFaceUtil.overwriteKeysInConfigDataMap(mGoogleApiClient, configKeysToOverwrite);
+            }
+        }
+
+        @Override
+        public void onDataChanged(DataEventBuffer dataEvents) {
+            try {
+                for (DataEvent dataEvent : dataEvents) {
+                    if (dataEvent.getType() != DataEvent.TYPE_CHANGED) {
+                        continue;
+                    }
+
+                    DataItem dataItem = dataEvent.getDataItem();
+                    if (!dataItem.getUri().getPath().equals(
+                            WatchFaceUtil.PATH_WITH_FEATURE)) {
+                        continue;
+                    }
+
+                    DataMapItem dataMapItem = DataMapItem.fromDataItem(dataItem);
+                    DataMap config = dataMapItem.getDataMap();
+                    updateUiForConfigDataMap(config);
+                }
+            } finally {
+                dataEvents.close();
             }
         }
     }
