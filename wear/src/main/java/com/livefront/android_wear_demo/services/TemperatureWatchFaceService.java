@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -114,6 +116,10 @@ public class TemperatureWatchFaceService extends CanvasWatchFaceService {
         private int mInteractiveBackgroundColor;
 
         private Map<Integer, Integer> mTempMap = new HashMap<>();
+        private Bitmap mBackgroundCold;
+        private Bitmap mBackgroundMild;
+        private Bitmap mBackgroundHot;
+        private Bitmap mBackgroundUnknown;
 
         private float mXOffset;
         private float mYOffset;
@@ -212,6 +218,11 @@ public class TemperatureWatchFaceService extends CanvasWatchFaceService {
             mTempMap.put(100, resources.getColor(R.color.one_hundred));
             mTempMap.put(110, resources.getColor(R.color.one_hundred_ten));
 
+            mBackgroundCold = BitmapFactory.decodeResource(resources, R.drawable.bg_cold);
+            mBackgroundMild = BitmapFactory.decodeResource(resources, R.drawable.bg_mild);
+            mBackgroundHot = BitmapFactory.decodeResource(resources, R.drawable.bg_hot);
+            mBackgroundUnknown = BitmapFactory.decodeResource(resources, R.drawable.bg_unknown);
+
             updateTimer();
 
             mGoogleApiClient = new GoogleApiClient.Builder(TemperatureWatchFaceService.this.getBaseContext())
@@ -299,6 +310,18 @@ public class TemperatureWatchFaceService extends CanvasWatchFaceService {
 
             // Draw the background.
             canvas.drawRect(0, 0, bounds.width(), bounds.height(), mBackgroundPaint);
+
+            if (mCurrentTemperature == null) {
+                canvas.drawBitmap(mBackgroundCold, 0, 0, null);
+            } else {
+                if (mCurrentTemperature < 40) {
+                    canvas.drawBitmap(mBackgroundCold, 0, 0, null);
+                } else if (mCurrentTemperature < 80) {
+                    canvas.drawBitmap(mBackgroundMild, 0, 0, null);
+                } else {
+                    canvas.drawBitmap(mBackgroundHot, 0, 0, null);
+                }
+            }
 
             String time;
             if (isInAmbientMode()) {
